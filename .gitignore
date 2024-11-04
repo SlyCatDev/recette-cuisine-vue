@@ -1,0 +1,11 @@
+# Ignorer node_modules
+node_modules/
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer le fichier de base de données SQLite
+database.sqlite
+
+# Ignorer les fichiers d’environnement
+.env
