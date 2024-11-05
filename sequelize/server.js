@@ -1,24 +1,25 @@
-const express = require('express');
+import express, { json } from 'express';
+
 const app = express();
 const PORT = 3000;
 
-app.use(express.json()); // Pour gérer les données JSON
+app.use(json()); // Pour gérer les données JSON
 
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
 });
 
 // Route gestion recettes
-const Recette = require('./models/recette');
+import { findAll, create } from './models/src/recette';
 
 // Route pour récupérer toutes les recettes
 app.get('/recettes', async (req, res) => {
-  const recettes = await Recette.findAll();
+  const recettes = await findAll();
   res.json(recettes);
 });
 
 // Route pour ajouter une nouvelle recette
 app.post('/recettes', async (req, res) => {
-  const recette = await Recette.create(req.body);
+  const recette = await create(req.body);
   res.json(recette);
 });
