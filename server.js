@@ -8,8 +8,7 @@ app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
 });
 
-// routes gestion recette
-
+// Route gestion recettes
 const Recette = require('./models/recette');
 
 // Route pour récupérer toutes les recettes
