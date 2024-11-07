@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Bienvenue sur le site !</h2>
+    <h1>Ajoute un repas :</h1>
     <form @submit.prevent="ajouterRecette">
       <input v-model="nom" placeholder="Nom de la recette" />
       <textarea v-model="description" placeholder="Description"></textarea>

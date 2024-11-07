@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import sequelize from './db'; // Assure-toi que `db` exporte l'instance configurée de Sequelize
+import sequelize from '../config/db'; // Assure-toi que `db` exporte l'instance configurée de Sequelize
 
 // Définir les types pour le modèle Recette
 interface RecetteAttributes {
@@ -12,17 +12,8 @@ interface RecetteAttributes {
 // Permettre que certains attributs soient optionnels lors de la création d'une nouvelle instance
 interface RecetteCreationAttributes extends Optional<RecetteAttributes, 'id'> {}
 
-// Définir le modèle avec les types
+// Définition du modèle Recette
 class Recette extends Model<RecetteAttributes, RecetteCreationAttributes> implements RecetteAttributes {
-  static create(arg0: { nom: any; description: any; }) {
-    throw new Error('Method not implemented.');
-  }
-  static init(arg0: { id: { type: any; autoIncrement: boolean; primaryKey: boolean; }; nom: { type: any; allowNull: boolean; }; ingredients: { type: any; allowNull: boolean; }; instructions: { type: any; allowNull: boolean; }; }, arg1: {
-    sequelize: any; // L'instance Sequelize
-    tableName: string;
-  }) {
-    throw new Error('Method not implemented.');
-  }
   public id!: number;
   public nom!: string;
   public ingredients!: string;
@@ -33,7 +24,7 @@ class Recette extends Model<RecetteAttributes, RecetteCreationAttributes> implem
 Recette.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
