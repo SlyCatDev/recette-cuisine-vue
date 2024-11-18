@@ -1,0 +1,88 @@
+<template>
+<div>
+    <h1>Todolist</h1>
+    <router-link to="/">Retour à l'accueil</router-link>
+  </div>
+
+
+       <!-- Champ pour ajouter une tâche -->
+  <form action="" @submit.prevent="addTask">
+    <fieldset role="group">
+      <input 
+      v-model="newtask" 
+      type="text" 
+      placeholder="Nouvelle tâche">
+      <button :disabled="newtask.length == 0">Ajouter</button>
+    </fieldset>
+  </form>
+  
+  
+  <div v-if="tasks.length == 0">Aucune tâche pour ce jour</div>
+  <div v-else>
+    <ul>
+      <li 
+    v-for="task in tasks"
+    :key="task.date"
+    :class="{completed: task.completed }"
+      >
+      <label>
+        <input type="checkbox" v-model="task.completed">
+        {{ task.title }}
+      </label>
+      </li>
+    </ul>
+    <label>
+        <input type="checkbox" v-model="hideCompleted">
+        Masquer les tâches complétées
+    </label>
+  </div>
+  </template>
+  
+  <script lang="ts" setup>
+  import { ref } from 'vue';
+
+   // Définition du type pour une tâche
+  interface task {
+    title: string;
+    completed: boolean;
+    date: number;
+  }
+  
+  /* 
+  TodoList
+  
+  - On affiche un message si il n'y a pas de tâche
+  - On a en haut un champ texte avec un bouton "Ajouter" pour ajouter nouvelle tâche
+  - Pour chaque tâche, on a une case à cocher pour marquer la tâche comme faite
+  - Une tâche terminée sera barrée (CSS)
+  - On affiche les tâches à faire en premier 
+  - Une case à cocher permet de masquer les tâches terminées
+  */ 
+  
+// Nouvelle tâche (input)
+  const newtask = ref<string>('');
+
+  const hideCompleted = ref<boolean>(false)
+
+  // Liste des tâches
+  const tasks = ref<task[]>([]);
+  
+
+  // Fonction pour ajouter une tâche
+  const addTask = (): void => { 
+    tasks.value.push({
+      title: newtask.value,
+      completed: false,
+      date: Date.now(),
+    });
+  
+    newtask.value = ""; // Réinitialise l'entrée
+  };
+  </script>
+  
+  <style scoped>
+  .completed {
+  opacity: .5;
+    text-decoration: line-through;
+  }
+  </style>
