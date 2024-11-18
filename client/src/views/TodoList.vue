@@ -21,7 +21,7 @@
   <div v-else>
     <ul>
       <li 
-    v-for="task in tasks"
+    v-for="task in filteredTasks"
     :key="task.date"
     :class="{completed: task.completed }"
       >
@@ -39,7 +39,8 @@
   </template>
   
   <script lang="ts" setup>
-  import { ref } from 'vue';
+
+  import { ref, computed  } from 'vue';
 
    // Définition du type pour une tâche
   interface task {
@@ -62,7 +63,7 @@
 // Nouvelle tâche (input)
   const newtask = ref<string>('');
 
-  const hideCompleted = ref<boolean>(false)
+  const hideCompleted = ref<boolean>(false);
 
   // Liste des tâches
   const tasks = ref<task[]>([]);
@@ -78,6 +79,12 @@
   
     newtask.value = ""; // Réinitialise l'entrée
   };
+
+// Filtrer les tâches en fonction de la case à cocher
+const filteredTasks = computed(() => {
+  return tasks.value.filter(task => !hideCompleted.value || !task.completed);
+});
+
   </script>
   
   <style scoped>
