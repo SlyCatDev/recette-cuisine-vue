@@ -1,11 +1,15 @@
 <template>
 <div>
-    <h1>Todolist</h1>
+    <h1>Todolist + test</h1>
     <router-link to="/">Retour à l'accueil</router-link>
   </div>
 
+  <p>Compteur : {{ count }}</p>
+  <button @click="increment">Incrémenter</button>
+  <button @click="decrement">Décrementer</button>
+  <hr>
 
-       <!-- Champ pour ajouter une tâche -->
+       <!-- Todolist -->
   <form action="" @submit.prevent="addTask">
     <fieldset role="group">
       <input 
@@ -17,7 +21,7 @@
   </form>
   
   
-  <div v-if="tasks.length == 0">Aucune tâche pour ce jour</div>
+  <div style="padding-top:1rem" v-if="tasks.length == 0">Aucune tâche pour ce jour</div>
   <div v-else>
     <ul>
       <li 
@@ -41,6 +45,16 @@
   <script lang="ts" setup>
 
   import { ref, computed  } from 'vue';
+
+  const count = ref(0);
+  
+  const increment = () => {
+  count.value++
+};
+
+  const decrement = () => {
+  count.value--
+};
 
    // Définition du type pour une tâche
   interface task {

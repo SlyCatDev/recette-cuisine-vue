@@ -1,16 +1,10 @@
 <template>
   <div>
-    <h1>Bienvenue sur la page d'accueil</h1>
-    <p>Ceci est la page principale de votre site.</p>
-    <router-link to="/Todolist">Aller à la page Todolist</router-link>
+    <h1>Boustifaille</h1>
+    <h2>Site de plat fait maison</h2>
   </div>
 
-  
-  <p>Compteur : {{ count }}</p>
-  <button @click="increment">Incrémenter</button>
-  <button @click="decrement">Décrementer</button>
-  <hr>
-  <button @click="sortMovies">Réorganiser</button>
+  <button @click="sortRecettes">Réorganiser</button>
   <form action="" @submit.prevent="addRecette">
     <input type="text" placeholder="Nouvelle Recette" 
     v-model="recetteName">
@@ -24,12 +18,11 @@
       {{ recette }} <button @click="deleteRecette(recette)">supprimer</button>
     </li>
   </ul>
-  </template>
+</template>
   
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const count = ref(0);
 const recettes = ref([
   'Nouille avec steak maïs poivrons',
   'Pizzas',
@@ -38,19 +31,11 @@ const recettes = ref([
 ]);
 const recetteName = ref('');
 
-const increment = () => {
-  count.value++
-};
-
-const decrement = () => {
-  count.value--
-};
-
 const deleteRecette = (recette: string) => {
   recettes.value = recettes.value.filter(m => m != recette)
 };
 
-const sortMovies = () => {
+const sortRecettes = () => {
   recettes.value.sort((a,b) => a > b ? 1 : -1)
   };
 
@@ -59,7 +44,7 @@ const addRecette = () => {
   recetteName.value = ''
 };
 
-  </script>
+</script>
 
 <style scoped>
 .active{

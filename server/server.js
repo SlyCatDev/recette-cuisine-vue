@@ -10,7 +10,7 @@ app.listen(PORT, () => {
 });
 
 // Route gestion recettes
-import { findAll, create } from './models/config/recette';
+import { findAll, create } from './models/Recette';
 
 // Route pour récupérer toutes les recettes
 app.get('/recettes', async (req, res) => {

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Recette from '../models/Recette';
 
 // Créer une nouvelle recette
-export const creerRecette = async (req: Request, res: Response) => {
+export const nouvelleRecette = async (req: Request, res: Response) => {
   try {
     const recette = await Recette.create(req.body);
     res.status(201).json(recette);
