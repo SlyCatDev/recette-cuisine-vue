@@ -21,7 +21,10 @@
   </form>
   
   
-  <div style="padding-top:1rem" v-if="tasks.length == 0">Aucune tâche pour ce jour</div>
+  <div 
+    style="padding-top:1rem" 
+    v-if="tasks.length == 0">Aucune tâche pour ce jour
+  </div>
   <div v-else>
     <ul>
       <li 
@@ -29,22 +32,26 @@
     :key="task.date"
     :class="{completed: task.completed }"
       >
-      <label>
-        <input type="checkbox" v-model="task.completed">
-        {{ task.title }}
-      </label>
+      <CheckBox 
+        :label="task.title" 
+        v-model="task.completed"
+       />
       </li>
     </ul>
     <label>
         <input type="checkbox" v-model="hideCompleted">
         Masquer les tâches complétées
     </label>
+    <p v-if="remainingTasks > 0">
+      {{ remainingTasks }} tâche{{ remainingTasks > 1 ? 's' : ''}} à faire
+    </p>
   </div>
   </template>
   
   <script lang="ts" setup>
 
-  import { ref, computed  } from 'vue';
+  import { ref, computed, onMounted  } from 'vue';
+  import CheckBox from '@/Checkbox.vue';
 
   const count = ref(0);
   
@@ -81,6 +88,10 @@
 
   // Liste des tâches
   const tasks = ref<task[]>([]);
+
+  onMounted(() => {
+    fetch()
+    console.log('hello')})
   
 
   // Fonction pour ajouter une tâche
@@ -98,7 +109,9 @@
 const filteredTasks = computed(() => {
   return tasks.value.filter(task => !hideCompleted.value || !task.completed);
 });
-
+const remainingTasks = computed(() => {
+  return tasks.value.filter(t => t.completed == false).length
+});
   </script>
   
   <style scoped>

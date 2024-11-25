@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database';
+import sequelize from '../bdd/database';
 
 /*abstract class Employe {
   public num_emp! : string;
@@ -132,16 +132,13 @@ ajouter_user_front(anne);
 
 
 // Modèle Sequelize
-class Recette {
-  declare id?: number;
-  declare nom: string;
-  declare recette?: string;
-  declare createdAt?: Date;
-  declare updatedAt?: Date;
+class Plat {
+  public id!: number;
+  public nom!: string;
+  public recette?: string;
 }
 
-// modèle Sequelize
-Recette.init<Recette> (
+Plat.init (
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -187,7 +184,7 @@ Recette.init<Recette> (
     ],
     // Ajoute des hooks (middleware)
     hooks: {
-      beforeValidate: (recette: Recette) => {
+      beforeValidate: (recette: Plat) => {
         // Nettoie les données avant la validation
         if (recette.nom) {
           recette.nom = recette.nom.trim();
@@ -200,4 +197,4 @@ Recette.init<Recette> (
   }
 );
 
-export default Recette;
+export default Plat;

@@ -1,6 +1,7 @@
 <template>
-<div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <Layout>
+    <template #header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container">
         <a class="navbar-brand" href="#">Site de Recettes</a>
         <button
@@ -26,22 +27,25 @@
         </div>
       </div>
     </nav>
-    <main class="container mt-4">
+    </template>
+    <template #aside>
+      Sidebar
+    </template>
+    <template #main>
+      <main class="container mt-4">
       <router-view />
     </main>
-  </div>
+    </template>
+    <template #footer>
+      Footer
+    </template>
+</Layout>
 </template>
 
 <script lang="ts" setup>
+import Layout from './Layout.vue';
 
 </script>
 
 <style>
-main {
-  min-height: calc(100vh - 140px);
-}
-nav {
-  display: flex;
-  gap: 10px;
-}
 </style>
