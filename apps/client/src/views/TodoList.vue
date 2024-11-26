@@ -50,8 +50,8 @@
   
   <script lang="ts" setup>
 
-  import { ref, computed, onMounted  } from 'vue';
-  import CheckBox from '@/Checkbox.vue';
+  import { ref, computed  } from 'vue';
+  import CheckBox from '@/components/CheckBox.vue';
 
   const count = ref(0);
   
@@ -88,11 +88,6 @@
 
   // Liste des tâches
   const tasks = ref<task[]>([]);
-
-  onMounted(() => {
-    fetch()
-    console.log('hello')})
-  
 
   // Fonction pour ajouter une tâche
   const addTask = (): void => { 

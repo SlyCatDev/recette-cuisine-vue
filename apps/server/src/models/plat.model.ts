@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../bdd/database';
+import sequelize from './bdd/database.ts';
+import { Model } from 'sequelize-typescript';
 
 /*abstract class Employe {
   public num_emp! : string;
@@ -132,7 +133,7 @@ ajouter_user_front(anne);
 
 
 // Modèle Sequelize
-class Plat {
+class Plat extends Model {
   public id!: number;
   public nom!: string;
   public recette?: string;

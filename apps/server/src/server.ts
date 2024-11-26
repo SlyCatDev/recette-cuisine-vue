@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-// import sequelize from './config/database';
+import sequelize from '../bdd/database.js';
 import platsRoutes from './routes/plats.routes';
 
 const app: Application = express();

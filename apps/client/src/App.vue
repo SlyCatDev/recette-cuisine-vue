@@ -28,14 +28,20 @@
       </div>
     </nav>
     </template>
+
     <template #aside>
       Sidebar
     </template>
+
     <template #main>
       <main class="container mt-4">
       <router-view />
+
+      <!--TEST-->
+      <input type="text" v-model="page.title">
     </main>
     </template>
+
     <template #footer>
       Footer
     </template>
@@ -43,7 +49,17 @@
 </template>
 
 <script lang="ts" setup>
-import Layout from './Layout.vue';
+import Layout from './LayoutPage.vue';
+
+import { ref, watchEffect } from 'vue';
+
+const page = ref({
+  title:''
+});
+
+watchEffect(() => {
+  document.title = page.value.title
+})
 
 </script>
 
