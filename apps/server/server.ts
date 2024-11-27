@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
-import sequelize from '../bdd/database.js';
-import platsRoutes from './routes/plats.routes';
+import sequelize from './config/database.js';
+import platsRoutes from './src/routes/plats.routes.js';
 
 const app: Application = express();
 const PORT = 3000;

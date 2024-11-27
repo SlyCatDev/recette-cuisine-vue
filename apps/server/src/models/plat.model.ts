@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from './bdd/database.ts';
+import sequelize from '../../config/database';
 import { Model } from 'sequelize-typescript';
 
 /*abstract class Employe {
@@ -134,12 +134,13 @@ ajouter_user_front(anne);
 
 // Modèle Sequelize
 class Plat extends Model {
-  public id!: number;
-  public nom!: string;
-  public recette?: string;
+  declare id: number;
+  declare nom: string;
+  declare recette?: string;
+  static init: any;
 }
 
-Plat.init (
+Plat.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -175,7 +176,7 @@ Plat.init (
   {
     sequelize,
     modelName: "recette",
-    timestamps: true,
+    timestamps: false,
     indexes: [
       {
         name: 'recette_nom_search',
