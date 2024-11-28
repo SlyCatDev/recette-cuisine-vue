@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../../config/database';
+import sequelize from '../config/database';
 import { Model } from 'sequelize-typescript';
 
 /*abstract class Employe {
@@ -136,7 +136,6 @@ ajouter_user_front(anne);
 class Plat extends Model {
   declare id: number;
   declare nom: string;
-  declare recette?: string;
   static init: any;
 }
 
@@ -162,16 +161,6 @@ Plat.init(
         msg: 'Ce nom de recette existe déjà'
       }
     },
-    recette: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        len: {
-          args: [0, 5000],
-          msg: "La recette doit contenir entre 10 et 5000 caractères"
-        }
-      }
-    },
   },
   {
     sequelize,
@@ -184,18 +173,6 @@ Plat.init(
         type: 'FULLTEXT'
       }
     ],
-    // Ajoute des hooks (middleware)
-    hooks: {
-      beforeValidate: (recette: Plat) => {
-        // Nettoie les données avant la validation
-        if (recette.nom) {
-          recette.nom = recette.nom.trim();
-        }
-        if (recette.recette) {
-          recette.recette = recette.recette.trim();
-        }
-      }
-    }
   }
 );
 

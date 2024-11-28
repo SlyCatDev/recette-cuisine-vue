@@ -1,4 +1,4 @@
-import Plat from '../models/plat.model';
+import Plat from './models/plat.model';
 
 class PlatsRepository {
   // Récupère tous les plats

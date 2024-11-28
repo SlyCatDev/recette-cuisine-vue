@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node server.ts",
-    "sequelize": "node --loader ts-node/esm node_modules/.bin/sequelize-cli"
+    "start": "node --loader ts-node/esm ./server.ts",
+    "sequelize": "node sequelize-cli.js"
   },
   "keywords": [],
   "author": "",

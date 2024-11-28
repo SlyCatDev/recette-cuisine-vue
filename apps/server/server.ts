@@ -1,5 +1,5 @@
 import express, { Application } from 'express';
-import sequelize from './config/database.js';
+import sequelize from './src/config/database.js';
 import platsRoutes from './src/routes/plats.routes.js';
 
 const app: Application = express();
@@ -11,7 +11,7 @@ const PORT = 3000;
     console.log('Connexion réussie à la base de données.');
 
     app.use(express.json());
-    app.use(platsRoutes);
+    app.use('/api/plats', platsRoutes);
 
     app.listen(PORT, () => {
       console.log(`Serveur démarré sur http://localhost:${PORT}`);

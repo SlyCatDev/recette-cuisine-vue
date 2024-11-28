@@ -1,4 +1,4 @@
-import PlatsRepository from '../data-access/plats.repository';
+import PlatsRepository from '../plats.repository';
 
 class PlatsService {
   // Logique métier pour récupérer tous les plats
